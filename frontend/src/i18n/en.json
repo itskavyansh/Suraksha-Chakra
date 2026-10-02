@@ -1,0 +1,58 @@
+{
+  "app": {
+    "name": "Suraksha Chakra",
+    "tagline": "Stay Safe, Stay Strong",
+    "demo_notice": "Demo prototype — all data shown is sample data."
+  },
+  "landing": {
+    "try_worker": "Try as demo worker (Ramesh)",
+    "view_admin": "View admin demo"
+  },
+  "home": {
+    "greeting": "Namaste, {{name}}",
+    "subtext": "Stay Safe, Stay Strong"
+  },
+  "nav": {
+    "home": "Home",
+    "jobs": "Jobs",
+    "scan": "Scan",
+    "training": "Training",
+    "profile": "Profile"
+  },
+  "tiles": {
+    "scan": "Scan Waste",
+    "jobs": "Nearby Jobs",
+    "training": "My Training",
+    "earnings": "My Earnings",
+    "recyclers": "Recycler Connect",
+    "profile": "My Profile"
+  },
+  "pages": {
+    "scan": "Scan Waste",
+    "jobs": "Nearby Jobs",
+    "training": "My Training",
+    "earnings": "My Earnings",
+    "recyclers": "Recycler Connect",
+    "profile": "My Profile",
+    "admin": "Admin Dashboard",
+    "not_found": "Page Not Found"
+  },
+  "coming_soon": {
+    "heading": "Coming in the next phase",
+    "body": "This feature is being built and will be available soon."
+  },
+  "errors": {
+    "something_wrong": "Something went wrong",
+    "go_home": "Go to Home"
+  },
+  "common": {
+    "back_home": "Back to Home",
+    "language_toggle": "हिं",
+    "language_toggle_en": "EN"
+  },
+  "admin": {
+    "back": "Back to Home",
+    "title": "Admin Dashboard",
+    "coming_soon": "Admin features coming in next phase."
+  }
+}
