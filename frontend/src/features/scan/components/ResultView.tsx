@@ -77,7 +77,9 @@ const ResultView: React.FC<ResultViewProps> = ({
             </p>
             <p className="text-ink-900 font-medium text-sm">{result.label}</p>
           </div>
-          {result.source === 'mock' && (
+          {result.source === 'model' ? (
+            <Badge variant="brand">{t('scan.result.ai_model')}</Badge>
+          ) : (
             <Badge variant="neutral">{t('scan.result.demo_classifier')}</Badge>
           )}
         </div>

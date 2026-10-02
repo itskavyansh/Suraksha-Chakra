@@ -6,9 +6,17 @@ interface AnalyzingViewProps {
   thumb: string | null;
   error: string | null;
   onRetry: () => void;
+  isModelLoading?: boolean;
+  modelProgress?: number;
 }
 
-const AnalyzingView: React.FC<AnalyzingViewProps> = ({ thumb, error, onRetry }) => {
+const AnalyzingView: React.FC<AnalyzingViewProps> = ({
+  thumb,
+  error,
+  onRetry,
+  isModelLoading = false,
+  modelProgress = 0,
+}) => {
   const { t } = useTranslation();
 
   if (error) {
@@ -54,11 +62,27 @@ const AnalyzingView: React.FC<AnalyzingViewProps> = ({ thumb, error, onRetry }) 
         </div>
       </div>
 
-      <div className="flex items-center gap-3">
-        <span className="w-5 h-5 border-2 border-brand-700 border-t-transparent rounded-full animate-spin flex-shrink-0" aria-hidden="true" />
-        <p className="text-ink-900 font-semibold text-base" aria-live="polite">
-          {t('scan.analyzing')}
-        </p>
+      <div className="flex flex-col items-center gap-2 max-w-xs w-full text-center">
+        <div className="flex items-center gap-3">
+          <span
+            className="w-5 h-5 border-2 border-brand-700 border-t-transparent rounded-full animate-spin flex-shrink-0"
+            aria-hidden="true"
+          />
+          <p className="text-ink-900 font-semibold text-base" aria-live="polite">
+            {isModelLoading
+              ? t('scan.analyzing_model_loading', { progress: modelProgress })
+              : t('scan.analyzing')}
+          </p>
+        </div>
+
+        {isModelLoading && (
+          <div className="w-full bg-ink-100 h-2 rounded-full overflow-hidden mt-1">
+            <div
+              className="bg-brand-700 h-full rounded-full transition-all duration-300"
+              style={{ width: `${modelProgress}%` }}
+            />
+          </div>
+        )}
       </div>
     </div>
   );

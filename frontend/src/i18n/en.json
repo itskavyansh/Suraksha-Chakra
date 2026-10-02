@@ -48,12 +48,8 @@
   "common": {
     "back_home": "Back to Home",
     "language_toggle": "हिं",
-    "language_toggle_en": "EN"
-  },
-  "admin": {
-    "back": "Back to Home",
-    "title": "Admin Dashboard",
-    "coming_soon": "Admin features coming in next phase."
+    "language_toggle_en": "EN",
+    "sample_data": "Sample Data"
   },
   "scan": {
     "title": "Scan Waste",
@@ -66,11 +62,18 @@
     "camera_unavailable": "Camera not available on this device. Use Upload or try a sample below.",
     "camera_denied": "Camera access was denied. Please upload a photo or try a sample.",
     "analyzing": "Checking for hazards…",
+    "analyzing_model_loading": "Loading AI model... this happens once ({{progress}}%)",
+    "status": {
+      "loading": "AI model loading {{progress}}%",
+      "ready": "AI ready",
+      "unavailable": "AI unavailable: using safe mode"
+    },
     "result": {
       "hazard_detected": "Hazard Detected",
       "unknown_treat": "Unknown: Treat as Hazardous",
       "looks_safe": "Looks Safe",
       "confidence": "Confidence",
+      "ai_model": "AI Model",
       "demo_classifier": "Demo Classifier",
       "report_hazard": "Report Hazard",
       "listen": "Listen",
@@ -105,7 +108,8 @@
       "classify_failed": "Analysis failed. Please try again.",
       "upload_not_image": "Please upload an image file.",
       "upload_too_large": "Image is too large. Please use a file under 10 MB.",
-      "try_again": "Try Again"
+      "try_again": "Try Again",
+      "model_load_failed": "AI model could not load. Safe offline fallback enabled."
     },
     "guidance": {
       "sharps": {
@@ -118,47 +122,273 @@
       },
       "glass": {
         "do1": "Use thick gloves or a scoop to pick up.",
-        "do2": "Wrap pieces tightly in paper or cloth.",
-        "do3": "Keep separate from other waste.",
-        "dont1": "Do not pick up with bare hands.",
-        "dont2": "Do not shake or drop it further."
+        "do2": "Wrap broken pieces in cardboard or thick cloth.",
+        "do3": "Place in a sturdy bag clearly marked 'Glass'.",
+        "dont1": "Do not pick up bare-handed.",
+        "dont2": "Do not stomp or crush with feet.",
+        "dont3": "Do not mix with soft paper or food waste."
       },
       "batteries": {
-        "do1": "Place in a separate, dry container.",
-        "do2": "Keep away from heat and water.",
-        "do3": "Report leaking or swollen batteries immediately.",
-        "dont1": "Do not crush, burn, or open.",
-        "dont2": "Do not touch a leaking battery — report it."
+        "do1": "Separate from wet waste immediately.",
+        "do2": "Keep in a dry, ventilated box away from direct sun.",
+        "do3": "Hand over to an authorised e-waste recycler.",
+        "dont1": "Do not break, puncture, or burn batteries.",
+        "dont2": "Do not mix leaking batteries with dry paper.",
+        "dont3": "Do not throw into normal landfill bins."
       },
       "chemicals": {
-        "do1": "Keep the cap tightly closed.",
-        "do2": "Store upright and separate from other waste.",
-        "do3": "Report if leaking or damaged.",
-        "dont1": "Do not open, sniff, or mix chemicals.",
-        "dont2": "Do not let it touch skin or eyes.",
-        "dont3": "Do not pour it anywhere."
+        "do1": "Check label and keep container upright with lid tight.",
+        "do2": "Wear gloves and a face covering if fumes are strong.",
+        "do3": "Keep separate from other waste in a shady spot.",
+        "dont1": "Do not smell, pour, or taste unknown liquids.",
+        "dont2": "Do not mix different chemicals together.",
+        "dont3": "Do not empty contents down open drains or soil."
       },
       "medical": {
-        "do1": "Wash hands well after any contact.",
-        "do2": "Keep separate and report it.",
-        "dont1": "Do not touch with bare hands.",
-        "dont2": "Do not open bags or containers.",
-        "dont3": "Do not put in regular waste."
+        "do1": "Use thick gloves and a face mask.",
+        "do2": "Isolate in a yellow or red sealed bag if available.",
+        "do3": "Inform hospital staff or municipal bio-waste handler.",
+        "dont1": "Do not handle open bandages, tubes, or syringes.",
+        "dont2": "Do not mix bio-waste with household scrap.",
+        "dont3": "Do not attempt to wash or reuse single-use items."
       },
       "general": {
-        "do1": "Handle normally — this looks safe.",
-        "do2": "Wear gloves if you have them.",
-        "do3": "Sort it for recycling if possible.",
-        "dont1": "Do not mix recyclables with wet waste."
+        "do1": "Sort cleanly into dry plastic, paper, or metal piles.",
+        "do2": "Rinse food residue to prevent foul smells.",
+        "do3": "Flatten cardboard and crush clean plastic bottles.",
+        "dont1": "Do not mix dirty wet waste with dry recyclables.",
+        "dont2": "Do not burn plastic or rubber scrap.",
+        "dont3": "Do not leave scattered in rainy weather."
       },
       "unknown": {
-        "do1": "Stay at a safe distance.",
-        "do2": "Use a tool or stick to move it if needed.",
-        "do3": "Ask a supervisor or report it.",
-        "dont1": "Do not touch it.",
-        "dont2": "Do not try to identify it yourself.",
-        "dont3": "Treat it as dangerous until you know what it is."
+        "do1": "Stop. Do not touch or move this item.",
+        "do2": "Warn coworkers and people nearby to keep distance.",
+        "do3": "Report the hazard to municipal staff or supervisor.",
+        "dont1": "Do not pick up with bare hands or feet.",
+        "dont2": "Do not break, crush, or open mystery packages.",
+        "dont3": "Do not put in your collection sack."
       }
+    }
+  },
+  "training": {
+    "title": "My Training",
+    "progress_header": "{{completed}} of {{total}} modules completed",
+    "not_started": "Not started",
+    "completed": "Completed",
+    "score": "Score: {{score}}/3",
+    "duration": "{{min}} min",
+    "start": "Start Module",
+    "retake": "Retake",
+    "listen": "Listen",
+    "stop": "Stop",
+    "step": "Step {{current}} of {{total}}",
+    "next": "Next",
+    "back": "Back",
+    "start_quiz": "Start Quiz",
+    "quiz_title": "Module Quiz",
+    "quiz_question": "Question {{current}} of {{total}}",
+    "correct": "Correct!",
+    "incorrect": "Incorrect",
+    "passed_title": "Module Passed! 🎉",
+    "failed_title": "Needs Practice",
+    "passed_msg": "Great job! You scored {{score}} of 3. Safety score increased by +5.",
+    "failed_msg": "You scored {{score}} of 3. You need at least 2 of 3 correct to pass.",
+    "finish": "Finish",
+    "try_again": "Try Again",
+    "back_to_list": "Back to Modules",
+    "modules": {
+      "sharps": {
+        "title": "Safe Handling of Sharps",
+        "step1": "Never use bare hands to pick up syringes, razor blades, or broken needles. Always inspect the waste pile before grabbing.",
+        "step2": "Use metal tongs or puncture-resistant thick leather gloves to handle sharp objects safely.",
+        "step3": "Place sharps inside a puncture-proof container, like an empty thick plastic bottle or tin can with a lid.",
+        "step4": "Seal the container, label it clearly if possible, and alert your supervisor or collection lead.",
+        "q1": "What should you wear when picking up a used syringe?",
+        "q1_opt0": "Thin cloth gloves",
+        "q1_opt1": "Thick puncture-resistant gloves or use tongs",
+        "q1_opt2": "Bare hands carefully",
+        "q2": "Where should used needles be deposited?",
+        "q2_opt0": "In a hard, puncture-proof closed container",
+        "q2_opt1": "In a thin polybag",
+        "q2_opt2": "In open loose garbage",
+        "q3": "What must you do if you accidentally get poked by a needle?",
+        "q3_opt0": "Ignore it and keep working",
+        "q3_opt1": "Bandage it and wait a week",
+        "q3_opt2": "Wash with soap and water immediately and seek doctor care"
+      },
+      "glass": {
+        "title": "Broken Glass & Sharp Metal",
+        "step1": "Look carefully for glass shards before reaching into bags or heaps. Broken glass causes the most hand lacerations.",
+        "step2": "Pick up large shards using heavy-duty gloves. Never kick or crush glass with your boots.",
+        "step3": "Wrap broken glass in folded cardboard or thick sacking before placing it into transport bins.",
+        "step4": "Keep glass containers separate from bags with paper and plastics so coworkers are not cut during loading.",
+        "q1": "Why should you never crush glass with your footwear?",
+        "q1_opt0": "Glass shards can pierce soles and injure your feet",
+        "q1_opt1": "It ruins the recyclability of glass",
+        "q1_opt2": "It creates dust that blows away",
+        "q2": "What is the best way to package broken glass?",
+        "q2_opt0": "Tossed loose into a cloth sack",
+        "q2_opt1": "Buried under food waste",
+        "q2_opt2": "Wrapped in cardboard or stiff carton",
+        "q3": "Which tool helps collect small scattered glass pieces?",
+        "q3_opt0": "Bare fingers",
+        "q3_opt1": "A dustpan and stiff broom",
+        "q3_opt2": "Water spray only"
+      },
+      "batteries": {
+        "title": "Batteries & E-Waste Handling",
+        "step1": "Lithium-ion phone and laptop batteries can ignite or explode if punctured or crushed.",
+        "step2": "Never drop batteries into general wet or combustible waste. Store them in a dry, shaded container.",
+        "step3": "If a battery looks swollen, discolored, or leaking liquid, do not press it. Cover terminals with tape if possible.",
+        "step4": "Sell or hand over batteries to authorized e-waste buyers who pay fair rates and recycle safely.",
+        "q1": "What is the danger of crushing a lithium-ion battery?",
+        "q1_opt0": "It loses weight",
+        "q1_opt1": "It can spark and cause a chemical fire",
+        "q1_opt2": "It turns into liquid immediately",
+        "q2": "How should batteries be stored while sorting?",
+        "q2_opt0": "In a dry, ventilated box away from heat and water",
+        "q2_opt1": "Under wet vegetable waste",
+        "q2_opt2": "Near burning garbage piles",
+        "q3": "What should you do with a swollen phone battery?",
+        "q3_opt0": "Hammer it flat",
+        "q3_opt1": "Pierce it to let gas out",
+        "q3_opt2": "Handle gently without pressure and keep in fire-safe sand or container"
+      },
+      "chemicals": {
+        "title": "Hazardous Chemical Containers",
+        "step1": "Bottles of pesticide, toilet cleaners, and industrial solvents contain toxic residues and corrosive acids.",
+        "step2": "Never smell, inhale, or pour mystery liquid out of unlabeled cans. Vapors can cause lung damage.",
+        "step3": "Keep caps screwed on tightly. Store containers upright to prevent spillage onto your clothing or feet.",
+        "step4": "Keep chemical cans separated from paper, cardboard, and other combustible scrap materials.",
+        "q1": "What should you do if an unlabelled bottle has strong fumes?",
+        "q1_opt0": "Sniff it closely to identify the chemical",
+        "q1_opt1": "Dump it onto the ground",
+        "q1_opt2": "Step back, do not inhale, and keep it upright in safe isolation",
+        "q2": "Can empty pesticide containers be reused for drinking water?",
+        "q2_opt0": "Never; toxic residues remain and cause poisoning",
+        "q2_opt1": "Yes, if washed with hot water once",
+        "q2_opt2": "Yes, after leaving in the sun",
+        "q3": "Why must you keep chemical bottles upright?",
+        "q3_opt0": "To make them easier to count",
+        "q3_opt1": "To prevent leaks onto skin, shoes, or flammable materials",
+        "q3_opt2": "To improve scrap resale value"
+      },
+      "medical": {
+        "title": "Medical & Bio-Waste Awareness",
+        "step1": "Used bandages, blood tubing, cotton swabs, and surgical gloves carry contagious pathogens and viral infections.",
+        "step2": "Recognize biohazard markings: yellow bags, red bins, and bio-hazard trefoil symbols.",
+        "step3": "Never attempt to wash and resell single-use medical items like masks, catheters, or dialysis tubes.",
+        "step4": "Report illegal dumping of hospital waste to municipal authorities or community supervisors immediately.",
+        "q1": "What color bags are typically used for clinical infectious waste?",
+        "q1_opt0": "Green and blue bags",
+        "q1_opt1": "Yellow or red biohazard bags",
+        "q1_opt2": "Clear grocery bags",
+        "q2": "Why should single-use medical masks and gloves never be reused?",
+        "q2_opt0": "They carry bacteria, viruses, and biological fluids",
+        "q2_opt1": "They weigh too little for scrap value",
+        "q2_opt2": "They take too long to dry",
+        "q3": "What should you do if hospital waste is dumped in public garbage bins?",
+        "q3_opt0": "Sort through it with bare hands",
+        "q3_opt1": "Burn it on the street",
+        "q3_opt2": "Report the hazard to municipal sanitary inspectors"
+      }
+    }
+  },
+  "jobs": {
+    "title": "Nearby Jobs",
+    "filters": {
+      "all": "All Jobs",
+      "under_2km": "Under 2 km",
+      "high_value": "High Value (₹200+)"
+    },
+    "posted_by": "Posted by {{by}}",
+    "est_weight": "~{{kg}} kg",
+    "est_value": "₹{{val}} est.",
+    "accept": "Accept Job",
+    "accepted": "Accepted",
+    "mark_done": "Mark Done",
+    "done": "Done",
+    "done_success": "Job completed! ₹{{amount}} added to your earnings.",
+    "empty": "No jobs found for this filter.",
+    "items": {
+      "job1": { "title": "Cardboard & Plastic Segregation" },
+      "job2": { "title": "RWA Dry Waste Collection" },
+      "job3": { "title": "Bulk Recyclable Pickup" },
+      "job4": { "title": "Household Packaging Clearout" },
+      "job5": { "title": "Glass & Metal Scrap Sorting" },
+      "job6": { "title": "Market Wholesale Carton Removal" },
+      "job7": { "title": "Society Office Paper Collection" },
+      "job8": { "title": "Residential Plastic Waste" }
+    }
+  },
+  "earnings": {
+    "title": "My Earnings",
+    "this_month": "This Month",
+    "kg_collected": "Kg Collected",
+    "jobs_done": "Jobs Completed",
+    "weekly_chart": "Weekly Earnings (Last 4 Weeks)",
+    "material_rates": "Indicative Scrap Rates",
+    "indicative_notice": "Indicative rates compiled from local recyclers; not guaranteed.",
+    "material_col": "Material",
+    "range_col": "Indicative Range",
+    "recent_transactions": "Recent Transactions",
+    "no_transactions": "No transactions recorded yet."
+  },
+  "recyclers": {
+    "title": "Recycler Directory",
+    "filter_all": "All Materials",
+    "verified": "Verified Buyer",
+    "unverified": "Unverified",
+    "call": "Call",
+    "directions": "Directions",
+    "hours": "Hours",
+    "accepts": "Accepted Materials & Rates"
+  },
+  "profile": {
+    "title": "My Profile",
+    "id_card": "Digital Worker ID",
+    "worker_id": "Worker ID",
+    "city": "City",
+    "joined": "Member Since",
+    "skills": "Skills",
+    "safety_score": "Safety Score",
+    "safety_desc": "High safety score provides priority access to premium waste jobs and insurance bonuses.",
+    "training_history": "Training History",
+    "language": "Language Preference",
+    "reset_demo": "Reset Demo Data",
+    "reset_confirm": "Reset all sample jobs, training, and transactions?",
+    "logout": "Logout"
+  },
+  "admin": {
+    "title": "Admin Dashboard",
+    "back": "Back to Home",
+    "banner": "Demo dashboard: figures are sample data",
+    "kpi_workers": "Registered Workers",
+    "kpi_scans": "Safety Scans",
+    "kpi_hazards": "Hazards Reported",
+    "kpi_training": "Training Completed",
+    "hazard_donut_title": "Reported Hazard Distribution",
+    "heatmap_title": "Delhi NCR Hazard Heatmap",
+    "heat_high": "High",
+    "heat_med": "Medium",
+    "heat_low": "Low",
+    "recent_reports": "Recent Hazard Reports",
+    "table_time": "Time",
+    "table_category": "Category",
+    "table_label": "Item",
+    "table_conf": "Confidence",
+    "table_loc": "Location",
+    "not_shared": "Not shared",
+    "sample_view": "Sample View",
+    "sample_view_desc": "This administrative module is active in sample demonstration mode.",
+    "nav": {
+      "dashboard": "Dashboard",
+      "workers": "Workers",
+      "reports": "Hazard Reports",
+      "jobs": "Jobs",
+      "recyclers": "Recyclers",
+      "training": "Training",
+      "analytics": "Analytics"
     }
   }
 }

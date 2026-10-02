@@ -2,6 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useAppStore } from '../../store/useAppStore';
+import { preload } from '../scan/classifier/modelStatus';
 import api from '../../data/api';
 import type { Language } from '../../types';
 
@@ -34,6 +35,7 @@ const LandingPage: React.FC = () => {
   const [loading, setLoading] = React.useState(false);
 
   const handleTryWorker = async () => {
+    preload();
     setLoading(true);
     try {
       const worker = await api.getCurrentWorker();

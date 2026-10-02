@@ -12,38 +12,78 @@ export interface Worker {
   safetyScore: number; // 0–100
 }
 
-export interface Job {
-  id: string;
-  title: string;
-  company: string;
-  location: string;
-  salary: string;
-  postedAt: string;
-  type: 'full-time' | 'part-time' | 'contract';
-  skills: string[];
+export interface TrainingStep {
+  textKey: string;
+}
+
+export interface QuizQuestion {
+  questionKey: string;
+  optionKeys: string[];
+  correctIndex: number;
 }
 
 export interface TrainingModule {
   id: string;
-  title: string;
-  description: string;
-  duration: number; // minutes
+  titleKey: string;
+  durationMin: number;
+  coverIcon: string;
+  steps: TrainingStep[];
+  quiz: QuizQuestion[];
+}
+
+export interface TrainingProgress {
+  moduleId: string;
   completed: boolean;
-  category: 'safety' | 'skills' | 'health';
+  score: number | null;
+  completedAt: string | null;
+}
+
+export interface Job {
+  id: string;
+  titleKey: string;
+  area: string;
+  distanceKm: number;
+  materials: string[];
+  estKg: number;
+  estValueINR: number;
+  postedBy: 'Household' | 'RWA' | 'BWG';
+  postedAgo: string;
+  status: 'open' | 'accepted' | 'done';
+}
+
+export interface RecyclerMaterial {
+  name: string;
+  rateINRPerKg: number;
 }
 
 export interface Recycler {
   id: string;
   name: string;
-  address: string;
-  city: string;
+  area: string;
+  verified: boolean;
+  materials: RecyclerMaterial[];
   phone: string;
-  materials: string[];
-  rating: number;
-  distanceKm: number;
+  hours: string;
 }
 
-// ── Phase 2: Scan / Hazard types ─────────────
+export interface Transaction {
+  id: string;
+  date: string; // ISO or YYYY-MM-DD
+  description: string;
+  kg: number;
+  amountINR: number;
+  material: string;
+}
+
+export interface AdminStats {
+  workersRegistered: number;
+  safetyScans: number;
+  hazardsReported: number;
+  trainingCompleted: number;
+  isSample: boolean;
+}
+
+// ── Phase 2 & 3: Scan / Hazard types ─────────────
 
 export type HazardCategory =
   | 'sharps'

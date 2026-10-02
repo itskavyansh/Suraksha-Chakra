@@ -24,7 +24,7 @@ const SAMPLES: SampleItem[] = [
 
 interface SampleTileProps {
   item: SampleItem;
-  onSelect: (canvas: HTMLCanvasElement, thumb: string, hint: string) => void;
+  onSelect: (canvas: HTMLCanvasElement, thumb: string, hint?: string, fallbackHint?: string) => void;
   disabled: boolean;
 }
 
@@ -40,9 +40,10 @@ const SampleTile: React.FC<SampleTileProps> = ({ item, onSelect, disabled }) => 
     try {
       const img = await loadImageFromUrl(`/samples/${item.id}.jpg`);
       const { canvas, thumb } = processSource(img);
-      onSelect(canvas, thumb, item.id);
+      // Sample jpg loaded successfully -> classify with real model (no hint)
+      onSelect(canvas, thumb, undefined, item.id);
     } catch {
-      // Image missing — still trigger with a blank canvas so mock can work
+      // Image missing — trigger with blank canvas and hint for mock classifier
       const canvas = document.createElement('canvas');
       canvas.width = 640;
       canvas.height = 480;
@@ -52,7 +53,7 @@ const SampleTile: React.FC<SampleTileProps> = ({ item, onSelect, disabled }) => 
         ctx.fillRect(0, 0, 640, 480);
       }
       const thumb = canvas.toDataURL('image/jpeg', 0.5);
-      onSelect(canvas, thumb, item.id);
+      onSelect(canvas, thumb, item.id, item.id);
     } finally {
       setLoading(false);
     }
@@ -90,7 +91,7 @@ const SampleTile: React.FC<SampleTileProps> = ({ item, onSelect, disabled }) => 
 };
 
 interface SamplePickerProps {
-  onSelect: (canvas: HTMLCanvasElement, thumb: string, hint: string) => void;
+  onSelect: (canvas: HTMLCanvasElement, thumb: string, hint?: string, fallbackHint?: string) => void;
   disabled?: boolean;
 }
 

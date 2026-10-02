@@ -40,10 +40,19 @@ export default defineConfig({
       },
       workbox: {
         globPatterns: ['**/*.{js,css,html,ico,png,svg,woff2}'],
+        globIgnores: ['**/*.onnx', '**/*.wasm', '**/eval-set/**'],
+        maximumFileSizeToCacheInBytes: 6 * 1024 * 1024,
       },
       devOptions: {
         enabled: true,
       },
     }),
   ],
+  worker: {
+    format: 'es',
+  },
+  build: {
+    target: 'esnext',
+    chunkSizeWarningLimit: 3000,
+  },
 });
