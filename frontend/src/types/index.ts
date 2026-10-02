@@ -8,7 +8,7 @@ export interface Worker {
   phone: string;
   city: string;
   skills: string[];
-  joinedAt: string; // ISO date string
+  joinedAt: string;
   safetyScore: number; // 0–100
 }
 
@@ -39,8 +39,38 @@ export interface Recycler {
   city: string;
   phone: string;
   materials: string[];
-  rating: number; // 1–5
+  rating: number;
   distanceKm: number;
+}
+
+// ── Phase 2: Scan / Hazard types ─────────────
+
+export type HazardCategory =
+  | 'sharps'
+  | 'glass'
+  | 'batteries'
+  | 'chemicals'
+  | 'medical'
+  | 'general'
+  | 'unknown';
+
+export interface ClassificationResult {
+  category: HazardCategory;
+  confidence: number; // 0..1
+  source: 'mock' | 'model';
+  label: string; // e.g. "Needle / Syringe"
+}
+
+export interface HazardReport {
+  id: string;
+  category: HazardCategory;
+  confidence: number;
+  label: string;
+  lat: number | null;
+  lng: number | null;
+  createdAt: string; // ISO
+  workerId: string;
+  imageThumb: string | null; // small data URL, max ~240px wide
 }
 
 export type Language = 'en' | 'hi';

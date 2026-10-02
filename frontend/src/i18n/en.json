@@ -54,5 +54,111 @@
     "back": "Back to Home",
     "title": "Admin Dashboard",
     "coming_soon": "Admin features coming in next phase."
+  },
+  "scan": {
+    "title": "Scan Waste",
+    "start_camera": "Start Camera",
+    "take_photo": "Take Photo",
+    "upload_photo": "Upload Photo",
+    "use_sample": "Use Sample",
+    "camera_starting": "Starting camera…",
+    "camera_preview": "Camera preview",
+    "camera_unavailable": "Camera not available on this device. Use Upload or try a sample below.",
+    "camera_denied": "Camera access was denied. Please upload a photo or try a sample.",
+    "analyzing": "Checking for hazards…",
+    "result": {
+      "hazard_detected": "Hazard Detected",
+      "unknown_treat": "Unknown: Treat as Hazardous",
+      "looks_safe": "Looks Safe",
+      "confidence": "Confidence",
+      "demo_classifier": "Demo Classifier",
+      "report_hazard": "Report Hazard",
+      "listen": "Listen",
+      "stop_listening": "Stop",
+      "scan_another": "Scan Another",
+      "view_training": "View Training",
+      "do_label": "What to do",
+      "dont_label": "What NOT to do",
+      "unknown_explainer": "We are not sure what this is. Stay safe and do not touch it."
+    },
+    "samples": {
+      "title": "Sample Images",
+      "needle": "Needle / Syringe",
+      "broken_glass": "Broken Glass",
+      "battery": "Battery",
+      "chemical_can": "Chemical Can",
+      "medical": "Medical Waste",
+      "bottle": "Plastic Bottle",
+      "cardboard": "Cardboard",
+      "unknown_item": "Unknown Item"
+    },
+    "report": {
+      "title": "Report Hazard",
+      "include_location": "Include my location",
+      "confirm": "Confirm Report",
+      "cancel": "Cancel",
+      "success": "Report sent. Thank you for keeping others safe.",
+      "success_no_location": "Report sent (without location). Thank you for keeping others safe.",
+      "voice_unavailable": "Voice not available on this device."
+    },
+    "errors": {
+      "classify_failed": "Analysis failed. Please try again.",
+      "upload_not_image": "Please upload an image file.",
+      "upload_too_large": "Image is too large. Please use a file under 10 MB.",
+      "try_again": "Try Again"
+    },
+    "guidance": {
+      "sharps": {
+        "do1": "Pick up only with tongs or thick gloves.",
+        "do2": "Put in a hard, closed container (bottle or can).",
+        "do3": "Report it to a supervisor.",
+        "dont1": "Do not touch with bare hands.",
+        "dont2": "Do not press, bend, or open it.",
+        "dont3": "Do not throw in open waste."
+      },
+      "glass": {
+        "do1": "Use thick gloves or a scoop to pick up.",
+        "do2": "Wrap pieces tightly in paper or cloth.",
+        "do3": "Keep separate from other waste.",
+        "dont1": "Do not pick up with bare hands.",
+        "dont2": "Do not shake or drop it further."
+      },
+      "batteries": {
+        "do1": "Place in a separate, dry container.",
+        "do2": "Keep away from heat and water.",
+        "do3": "Report leaking or swollen batteries immediately.",
+        "dont1": "Do not crush, burn, or open.",
+        "dont2": "Do not touch a leaking battery — report it."
+      },
+      "chemicals": {
+        "do1": "Keep the cap tightly closed.",
+        "do2": "Store upright and separate from other waste.",
+        "do3": "Report if leaking or damaged.",
+        "dont1": "Do not open, sniff, or mix chemicals.",
+        "dont2": "Do not let it touch skin or eyes.",
+        "dont3": "Do not pour it anywhere."
+      },
+      "medical": {
+        "do1": "Wash hands well after any contact.",
+        "do2": "Keep separate and report it.",
+        "dont1": "Do not touch with bare hands.",
+        "dont2": "Do not open bags or containers.",
+        "dont3": "Do not put in regular waste."
+      },
+      "general": {
+        "do1": "Handle normally — this looks safe.",
+        "do2": "Wear gloves if you have them.",
+        "do3": "Sort it for recycling if possible.",
+        "dont1": "Do not mix recyclables with wet waste."
+      },
+      "unknown": {
+        "do1": "Stay at a safe distance.",
+        "do2": "Use a tool or stick to move it if needed.",
+        "do3": "Ask a supervisor or report it.",
+        "dont1": "Do not touch it.",
+        "dont2": "Do not try to identify it yourself.",
+        "dont3": "Treat it as dangerous until you know what it is."
+      }
+    }
   }
 }
