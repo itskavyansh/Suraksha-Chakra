@@ -1,0 +1,50 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    background-color: #F7FAF8;
+    color: #1A2420;
+    font-family: 'Inter', 'Noto Sans Devanagari', system-ui, sans-serif;
+    user-select: none;
+    -webkit-user-select: none;
+  }
+
+  input, textarea {
+    user-select: text;
+    -webkit-user-select: text;
+  }
+}
+
+/* Touch targets >= 44px */
+button, a, input, select, textarea {
+  touch-action: manipulation;
+}
+
+/* Print stylesheet for verified passport */
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  #printable-passport, #printable-passport * {
+    visibility: visible;
+  }
+  #printable-passport {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    margin: 0;
+    padding: 20px;
+    box-shadow: none !important;
+    border: 1px solid #0F5C3A !important;
+  }
+  .no-print {
+    display: none !important;
+  }
+}

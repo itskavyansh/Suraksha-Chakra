@@ -1,0 +1,25 @@
+export const ROUTES = {
+  landing: '/',
+  login: '/login',
+  signup: '/signup',
+  forgotPin: '/forgot-pin',
+  home: '/home',
+  scan: '/scan',
+  hurt: '/hurt',
+  hurtType: (type: string) => `/hurt/${type}` as const,
+  hurtLog: '/hurt/log',
+  priceCheck: '/price-check',
+  guide: '/guide',
+  guideCategory: (category: string) => `/guide/${category}` as const,
+  training: '/training',
+  trainingDetail: (id: string | number) => `/training/${id}` as const,
+  jobs: '/jobs',
+  earnings: '/earnings',
+  recyclers: '/recyclers',
+  profile: '/profile',
+  admin: '/admin',
+  verify: (workerId: string) => `/verify/${workerId}` as const,
+  eval: '/eval',
+} as const;
+
+export type RouteKey = keyof typeof ROUTES;
