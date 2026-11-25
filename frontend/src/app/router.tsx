@@ -18,7 +18,10 @@ import { HurtPage, HurtTypePage, HurtLogPage } from '@/features/hurt/HurtPages';
 import { PriceCheckPage } from '@/features/priceCheck/PriceCheckPage';
 import { GuidePage, GuideCategoryPage } from '@/features/guide/GuidePages';
 import { TrainingPage, TrainingDetailPage } from '@/features/training/TrainingPages';
-import { JobsPage, EarningsPage, RecyclersPage, ProfilePage } from '@/features/pages/PlaceholderPages';
+import { JobsPage } from '@/features/jobs/JobsPage';
+import { EarningsPage } from '@/features/earnings/EarningsPage';
+import { RecyclersPage } from '@/features/recyclers/RecyclersPage';
+import { ProfilePage } from '@/features/profile/ProfilePage';
 
 // Lazy-loaded routes for admin, verify, and eval
 const AdminDashboardPage = lazy(() =>
