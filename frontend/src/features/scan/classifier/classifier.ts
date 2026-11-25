@@ -1,4 +1,5 @@
 import { ClassificationResult } from '@/types';
+import { modelClassifier } from './modelClassifier';
 
 export const CONFIDENCE_THRESHOLD = 0.6;
 
@@ -14,8 +15,8 @@ export class MockClassifier implements Classifier {
     _input: HTMLCanvasElement | ImageData | string,
     hint?: string
   ): Promise<ClassificationResult> {
-    // Artificial inference delay 700-1100ms
-    const delay = 700 + Math.random() * 400;
+    // Artificial inference delay 400-800ms
+    const delay = 400 + Math.random() * 400;
     await new Promise((res) => setTimeout(res, delay));
 
     switch (hint) {
@@ -76,7 +77,6 @@ export class MockClassifier implements Classifier {
           label: 'Unidentified item',
         };
       default:
-        // Arbitrary camera or gallery upload with no sample hint
         return {
           category: 'unknown',
           confidence: 0.30,
@@ -87,8 +87,21 @@ export class MockClassifier implements Classifier {
   }
 }
 
-// Global classifier provider (Later: swap to the real model in Stage 11)
-let activeClassifier: Classifier = new MockClassifier();
+export const mockClassifier = {
+  classifyImage: (
+    src: HTMLCanvasElement | ImageData | string,
+    hint?: string
+  ): Promise<ClassificationResult> => new MockClassifier().classify(src, hint),
+};
+
+const adaptedModelClassifier: Classifier = {
+  classify: (input, hint) => modelClassifier.classifyImage(input, hint),
+};
+
+let activeClassifier: Classifier =
+  typeof import.meta !== 'undefined' && import.meta.env?.VITE_USE_MOCK === '1'
+    ? new MockClassifier()
+    : adaptedModelClassifier;
 
 export function setClassifier(c: Classifier): void {
   activeClassifier = c;

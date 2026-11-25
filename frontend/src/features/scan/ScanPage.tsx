@@ -24,6 +24,8 @@ import { Sheet } from '@/components/ui/Sheet';
 import { ROUTES } from '@/app/routes';
 import { ClassificationResult } from '@/types';
 import { getClassifier, CONFIDENCE_THRESHOLD } from './classifier/classifier';
+import { modelClassifier } from './classifier/modelClassifier';
+import { useModelStatusStore } from './classifier/modelStatus';
 import { HAZARD_GUIDANCE } from './guidance';
 import { useSpeech } from '@/hooks/useSpeech';
 import { useToast } from '@/components/ui/Toast';
@@ -48,6 +50,12 @@ export const ScanPage: React.FC = () => {
   const { speak, stop, isSpeaking } = useSpeech();
   const user = useSessionStore((state) => state.user);
   const updateUser = useSessionStore((state) => state.updateUser);
+  const modelStatus = useModelStatusStore((state) => state.status);
+  const modelProgress = useModelStatusStore((state) => state.progress);
+
+  useEffect(() => {
+    modelClassifier.preload();
+  }, []);
 
   // States: 'capture' | 'analyzing' | 'result'
   const [scanState, setScanState] = useState<'capture' | 'analyzing' | 'result'>('capture');
@@ -325,13 +333,29 @@ export const ScanPage: React.FC = () => {
       {/* State A: Capture */}
       {scanState === 'capture' && (
         <div className="space-y-4 animate-in fade-in duration-150">
-          <div>
-            <h1 className="text-xl font-bold text-ink-900">
-              {t('scan.title')}
-            </h1>
-            <p className="text-xs text-ink-500 mt-0.5">
-              {t('scan.subtitle')}
-            </p>
+          <div className="flex items-center justify-between">
+            <div>
+              <h1 className="text-xl font-bold text-ink-900">
+                {t('scan.title')}
+              </h1>
+              <p className="text-xs text-ink-500 mt-0.5">
+                {t('scan.subtitle')}
+              </p>
+            </div>
+
+            {modelStatus === 'loading' ? (
+              <span className="inline-flex items-center text-[10px] font-bold text-info-600 bg-info-100 px-2 py-0.5 rounded-full">
+                <Sparkles className="w-3 h-3 mr-1 animate-spin" />
+                {t('scan.aiLoading', { percent: modelProgress })}
+              </span>
+            ) : modelStatus === 'ready' ? (
+              <span className="inline-flex items-center text-[10px] font-bold text-brand-700 bg-brand-100 px-2 py-0.5 rounded-full">
+                <Sparkles className="w-3 h-3 mr-1" />
+                {t('scan.aiReady')}
+              </span>
+            ) : (
+              <Badge variant="sample">{t('scan.demoClassifierBadge')}</Badge>
+            )}
           </div>
 
           {/* Camera Viewport with Corner Brackets */}
