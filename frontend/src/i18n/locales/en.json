@@ -494,5 +494,33 @@
       "q3Opt3": "Burn the entire pile on the street",
       "q3Explain": "Report hazardous clinical dumping immediately so municipal teams can handle it with biosecurity protocols."
     }
+  },
+  "firstAid": {
+    "needle": {
+      "step1": "Immediately wash the puncture site under running water and gentle soap.",
+      "step2": "Allow the wound to bleed gently on its own. Do not squeeze, suck, or scrub the skin.",
+      "step3": "Do not apply bleach, spirit, or harsh chemicals to the puncture area.",
+      "step4": "Cover the area gently with a clean, dry bandage or sterile dressing.",
+      "step5": "Go to a clinic or hospital as soon as possible and inform the doctor it was a needle prick so tetanus, hepatitis B, and HIV post-exposure care can be assessed without waiting for symptoms."
+    },
+    "cut": {
+      "step1": "Apply firm, direct pressure on the cut using a clean cloth or gauze to stop any bleeding.",
+      "step2": "Gently rinse the wound under clean running tap water to remove dirt.",
+      "step3": "Cover the cut with a clean dressing or dry cloth.",
+      "step4": "Check when you last received a tetanus booster and visit a clinic as soon as possible for deep or jagged cuts."
+    },
+    "chemical": {
+      "step1": "Immediately remove any contaminated clothing, footwear, and gloves safely.",
+      "step2": "Rinse the exposed skin or eyes with plenty of running water continuously for a long time.",
+      "step3": "Do not apply home remedies, turmeric, oils, or neutralizing liquids.",
+      "step4": "Keep the chemical container label or take a photo of it to show to the treating doctor.",
+      "step5": "Go to a clinic or hospital as soon as possible for professional burn treatment."
+    },
+    "other": {
+      "step1": "For animal bites, immediately wash the wound under running tap water with soap for at least 15 minutes. Never apply soil or red chillies.",
+      "step2": "For heat burns, hold the burned area under cool running water for 10 minutes. Do not apply ice.",
+      "step3": "For severe sprains or impact injuries, rest and immobilize the injured limb without putting weight on it.",
+      "step4": "Go to a clinic or emergency hospital as soon as possible for rabies prevention, X-rays, or specialized medical care."
+    }
   }
 }
