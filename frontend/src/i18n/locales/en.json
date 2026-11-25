@@ -522,5 +522,78 @@
       "step3": "For severe sprains or impact injuries, rest and immobilize the injured limb without putting weight on it.",
       "step4": "Go to a clinic or emergency hospital as soon as possible for rabies prevention, X-rays, or specialized medical care."
     }
+  },
+  "guidance": {
+    "sharps": {
+      "title": "Sharps & Needles",
+      "lookLike": "Used syringes, hypodermic needles, open razor blades, scalpels, and lancets.",
+      "do1": "Use tongs or thick puncture-resistant leather gloves.",
+      "do2": "Drop point-first into a rigid plastic or tin container immediately.",
+      "do3": "Report biomedical sharps dumping to municipal supervisors.",
+      "do4": "Wash under running water and get prompt medical care if pricked.",
+      "dont1": "Never touch needles or open razor blades with bare hands.",
+      "dont2": "Do not attempt to bend, break, or recap needles.",
+      "dont3": "Never throw loose needles into plastic sacks or garbage bags."
+    },
+    "glass": {
+      "title": "Broken Glass & Sharp Metal",
+      "lookLike": "Shattered liquor and soda bottles, jagged tin lids, broken glass panes, and iron shards.",
+      "do1": "Wear heavy work gloves and sturdy closed footwear.",
+      "do2": "Wrap large jagged pieces in thick newspaper or corrugated cardboard.",
+      "do3": "Sweep small shards with a broom and dustpan rather than picking.",
+      "dont1": "Do not compress or step on waste bags containing glass.",
+      "dont2": "Never mix loose broken glass with soft plastic or paper waste.",
+      "dont3": "Do not pick up tiny glass splinters with bare fingers."
+    },
+    "batteries": {
+      "title": "Batteries & E-Waste",
+      "lookLike": "Swollen mobile phone batteries, lithium pouches, powerbanks, and lead-acid cells.",
+      "do1": "Keep in a cool, dry bin away from flammable paper and cardboard.",
+      "do2": "Tape battery contact terminals with plastic adhesive tape.",
+      "do3": "Handle bloated or leaking batteries with extreme caution.",
+      "dont1": "Never puncture, crush, or open battery casings.",
+      "dont2": "Never throw batteries into open fires or burn piles.",
+      "dont3": "Do not store batteries loose with metal scrap or coins."
+    },
+    "chemicals": {
+      "title": "Chemical Containers",
+      "lookLike": "Pesticide cans, acid bottles, industrial cleaning drums, paint thinners, and spray cans.",
+      "do1": "Check labels for hazard symbols (skull, flame, corrosion).",
+      "do2": "Keep containers upright and sealed with caps tightly closed.",
+      "do3": "Work in well-ventilated outdoor areas away from direct sun.",
+      "dont1": "Never inhale, sniff, or taste unidentified liquids.",
+      "dont2": "Do not mix unknown chemical liquids together.",
+      "dont3": "Never puncture pressurized aerosol cans or expose them to heat."
+    },
+    "medical": {
+      "title": "Medical & Bio Waste",
+      "lookLike": "Yellow or red biohazard bags, blood-soiled bandages, IV tubes, urine bags, and medicine vials.",
+      "do1": "Isolate the area immediately and warn coworkers.",
+      "do2": "Report illegal medical dumping through the app to municipal sanitation.",
+      "do3": "Wash hands with soap and water thoroughly after working nearby.",
+      "dont1": "Never sort through or salvage materials from biomedical bags.",
+      "dont2": "Do not take clinical waste home or to scrap shops.",
+      "dont3": "Never burn medical plastic waste in the open."
+    },
+    "unknown": {
+      "title": "Unknown Hazardous Object",
+      "lookLike": "Unidentified sealed drums, corroded cylinders, suspicious powders, or unlabelled containers.",
+      "do1": "Stay safe: do not touch, shake, or open the item.",
+      "do2": "Inspect from a safe distance and look for visible danger symbols.",
+      "do3": "Use a tool or long stick if moving is strictly necessary.",
+      "do4": "Report the location to a supervisor or through the app.",
+      "dont1": "Never touch or open unknown containers with bare hands.",
+      "dont2": "Do not sniff, inhale, or taste unknown residues.",
+      "dont3": "Never bring unidentified cylinders or chemical cans into sorting yards."
+    },
+    "general": {
+      "title": "General Recyclable Scrap",
+      "lookLike": "Clean plastic PET bottles, corrugated boxes, newspapers, iron scrap, and aluminium cans.",
+      "do1": "Flatten cardboard cartons to save transport space.",
+      "do2": "Empty and rinse beverage bottles before baling.",
+      "do3": "Sort by material category to maximize resale rate.",
+      "dont1": "Do not mix wet food waste with dry paper or cardboard.",
+      "dont2": "Do not burn plastic labels or PVC scrap."
+    }
   }
 }
