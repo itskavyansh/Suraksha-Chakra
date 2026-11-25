@@ -3,11 +3,15 @@ import { createBrowserRouter, RouteObject } from 'react-router-dom';
 import { WorkerLayout } from './layouts/WorkerLayout';
 import { AdminLayout } from './layouts/AdminLayout';
 import { PublicLayout } from './layouts/PublicLayout';
+import { WorkerAuthGuard } from './guards/WorkerAuthGuard';
+import { GuestGuard } from './guards/GuestGuard';
 import { NotFoundPage } from '@/features/notFound/NotFoundPage';
 
-// Direct worker pages
+// Real pages
 import { LandingPage } from '@/features/landing/LandingPage';
-import { LoginPage, SignupPage, ForgotPinPage } from '@/features/auth/AuthPages';
+import { LoginPage } from '@/features/auth/LoginPage';
+import { SignupPage } from '@/features/auth/SignupPage';
+import { ForgotPinPage } from '@/features/auth/ForgotPinPage';
 import { HomePage } from '@/features/home/HomePage';
 import { ScanPage } from '@/features/scan/ScanPage';
 import { HurtPage, HurtTypePage, HurtLogPage } from '@/features/hurt/HurtPages';
@@ -16,7 +20,7 @@ import { GuidePage, GuideCategoryPage } from '@/features/guide/GuidePages';
 import { TrainingPage, TrainingDetailPage } from '@/features/training/TrainingPages';
 import { JobsPage, EarningsPage, RecyclersPage, ProfilePage } from '@/features/pages/PlaceholderPages';
 
-// Lazy-loaded routes for admin, verify, and eval to keep worker bundle lean
+// Lazy-loaded routes for admin, verify, and eval
 const AdminDashboardPage = lazy(() =>
   import('@/features/admin/AdminPages').then((m) => ({ default: m.AdminDashboardPage }))
 );
@@ -67,29 +71,39 @@ export const routeConfig: RouteObject[] = [
     element: <PublicLayout />,
     children: [
       { path: '/', element: <LandingPage /> },
-      { path: '/login', element: <LoginPage /> },
-      { path: '/signup', element: <SignupPage /> },
-      { path: '/forgot-pin', element: <ForgotPinPage /> },
+      {
+        element: <GuestGuard />,
+        children: [
+          { path: '/login', element: <LoginPage /> },
+          { path: '/signup', element: <SignupPage /> },
+          { path: '/forgot-pin', element: <ForgotPinPage /> },
+        ],
+      },
     ],
   },
-  // Worker Layout (Protected worker routes)
+  // Protected Worker Layout
   {
-    element: <WorkerLayout />,
+    element: <WorkerAuthGuard />,
     children: [
-      { path: '/home', element: <HomePage /> },
-      { path: '/scan', element: <ScanPage /> },
-      { path: '/hurt', element: <HurtPage /> },
-      { path: '/hurt/:type', element: <HurtTypePage /> },
-      { path: '/hurt/log', element: <HurtLogPage /> },
-      { path: '/price-check', element: <PriceCheckPage /> },
-      { path: '/guide', element: <GuidePage /> },
-      { path: '/guide/:category', element: <GuideCategoryPage /> },
-      { path: '/training', element: <TrainingPage /> },
-      { path: '/training/:id', element: <TrainingDetailPage /> },
-      { path: '/jobs', element: <JobsPage /> },
-      { path: '/earnings', element: <EarningsPage /> },
-      { path: '/recyclers', element: <RecyclersPage /> },
-      { path: '/profile', element: <ProfilePage /> },
+      {
+        element: <WorkerLayout />,
+        children: [
+          { path: '/home', element: <HomePage /> },
+          { path: '/scan', element: <ScanPage /> },
+          { path: '/hurt', element: <HurtPage /> },
+          { path: '/hurt/:type', element: <HurtTypePage /> },
+          { path: '/hurt/log', element: <HurtLogPage /> },
+          { path: '/price-check', element: <PriceCheckPage /> },
+          { path: '/guide', element: <GuidePage /> },
+          { path: '/guide/:category', element: <GuideCategoryPage /> },
+          { path: '/training', element: <TrainingPage /> },
+          { path: '/training/:id', element: <TrainingDetailPage /> },
+          { path: '/jobs', element: <JobsPage /> },
+          { path: '/earnings', element: <EarningsPage /> },
+          { path: '/recyclers', element: <RecyclersPage /> },
+          { path: '/profile', element: <ProfilePage /> },
+        ],
+      },
     ],
   },
   // Admin Layout (Public demo dashboard)
@@ -115,7 +129,7 @@ export const routeConfig: RouteObject[] = [
       </Suspense>
     ),
   },
-  // Public eval page (AI model evaluation)
+  // Public eval page
   {
     path: '/eval',
     element: (
